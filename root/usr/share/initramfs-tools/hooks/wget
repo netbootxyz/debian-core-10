@@ -26,5 +26,5 @@ echo "ca_directory=/etc/ssl/certs" > $DESTDIR/etc/wgetrc
 
 ## force initrd to use full wget
 sed -i \
-	's/	wget/	\/bin\/wget/g' \
+	's/	wget/	\/bin\/wget --progress=bar:force:noscroll/g' \
 	/lib/live/boot/9990-mount-http.sh
