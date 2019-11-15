@@ -6,7 +6,7 @@
  								log_begin_msg "Trying wget ${url} -O ${dest}/$(basename ${url})"
 -								wget "${url}" -O "${dest}/$(basename ${url})"
 +								/bin/wget --progress=bar:force:noscroll "${url}" -O "${dest}/$(basename ${url})"
-+								if [ ! -z "$(wget -q --spider -S --max-redirect 0 "${url}".part2 2>&1 >/dev/null | grep "200 OK\|302 Found" || :)" ]; then
++								if [ ! -z "$(/bin/wget -q --spider -S --max-redirect 0 "${url}".part2 2>&1 >/dev/null | grep "200 OK\|302 Found" || :)" ]; then
 +									/bin/wget --progress=bar:force:noscroll "${url}".part2 -O ->> "${dest}/$(basename ${url})"
 +								fi
  								;;
