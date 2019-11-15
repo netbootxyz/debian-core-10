@@ -1,0 +1,14 @@
+--- 9990-mount-http.sh	2019-06-14 09:55:07.000000000 +0000
++++ 9990-mount-http.sh.new	2019-11-15 08:38:03.225447344 +0000
+@@ -41,7 +41,10 @@
+ 
+ 							*)
+ 								log_begin_msg "Trying wget ${url} -O ${dest}/$(basename ${url})"
+-								wget "${url}" -O "${dest}/$(basename ${url})"
++								/bin/wget --progress=bar:force:noscroll "${url}" -O "${dest}/$(basename ${url})"
++								if [[ ! -z "$( /bin/wget -q --spider -S --max-redirect 0 "${url}".part2 2> >(grep "200 OK\|302 Found") || :  )" ]]; then
++									/bin/wget --progress=bar:force:noscroll "${url}".part2 -O ->> "${dest}/$(basename ${url})"
++								fi
+ 								;;
+ 						esac
+ 					else

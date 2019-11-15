@@ -22,6 +22,8 @@ RUN \
 	pixz \
 	psmisc \
 	wget && \
+ echo "**** patch live-boot ****" && \
+ patch /lib/live/boot/9990-mount-http.sh < /patch && \
  echo "**** install kernel ****" && \
  if [ -z ${EXTERNAL_VERSION+x} ]; then \
 	EXTERNAL_VERSION=$(curl -sX GET https://cloudfront.debian.net/debian/dists/buster/main/binary-amd64/Packages.gz | gunzip -c |grep -A 7 -m 1 "Package: linux-image-4.19.0-6-amd64" | awk -F ": " '/Version/{print $2;exit}');\
