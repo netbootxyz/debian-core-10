@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:sid
 
 # versioning
 ARG EXTERNAL_VERSION
@@ -26,10 +26,10 @@ RUN \
  patch /lib/live/boot/9990-mount-http.sh < /patch && \
  echo "**** install kernel ****" && \
  if [ -z ${EXTERNAL_VERSION+x} ]; then \
-	EXTERNAL_VERSION=$(curl -sX GET https://cloudfront.debian.net/debian/dists/buster/main/binary-amd64/Packages.gz | gunzip -c |grep -A 7 -m 1 "Package: linux-image-4.19.0-6-amd64" | awk -F ": " '/Version/{print $2;exit}');\
+	EXTERNAL_VERSION=$(curl -sX GET https://cloudfront.debian.net/debian/dists/sid/main/binary-amd64/Packages.gz | gunzip -c |grep -A 7 -m 1 "Package: linux-image-5.3.0-2-amd64" | awk -F ": " '/Version/{print $2;exit}');\
  fi && \
  apt-get install -y \
-	linux-image-4.19.0-6-amd64=${EXTERNAL_VERSION} && \
+	linux-image-5.3.0-2-amd64=${EXTERNAL_VERSION} && \
  echo "**** clean up ****" && \
  mkdir /buildout && \
  rm -rf \
