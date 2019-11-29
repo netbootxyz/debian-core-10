@@ -1,0 +1,112 @@
+Package: amd64-microcode
+Pin: release o=Debian,n=sid
+Pin-Priority: 999
+
+Package: aufs-dkms
+Pin: release o=Debian,n=sid
+Pin-Priority: 999
+
+Package: b43-fwcutter
+Pin: release o=Debian,n=sid
+Pin-Priority: 999
+
+Explanation: unavailable in Buster
+Package: electrum python3-electrum python3-aiohttp-socks python3-aiorpcx
+Pin: release o=Debian,n=sid
+Pin-Priority: 999
+
+Package: enigmail
+Pin: origin deb.tails.boum.org
+Pin-Priority: -1
+
+Package: firmware-b43-installer
+Pin: release o=Debian,n=sid
+Pin-Priority: 999
+
+Package: firmware-b43legacy-installer
+Pin: release o=Debian,n=sid
+Pin-Priority: 999
+
+Package: firmware-linux-free
+Pin: release o=Debian,n=sid
+Pin-Priority: 999
+
+Explanation: src:firmware-nonfree
+Package: firmware-linux firmware-linux-nonfree firmware-amd-graphics firmware-atheros firmware-brcm80211 firmware-intel-sound firmware-ipw2x00 firmware-iwlwifi firmware-libertas firmware-misc-nonfree firmware-realtek firmware-ti-connectivity
+Pin: release o=Debian,n=sid
+Pin-Priority: 990
+
+Package: firmware-zd1211
+Pin: release o=Debian,n=sid
+Pin-Priority: 999
+
+Package: linux-compiler-* linux-headers-* linux-image-* linux-kbuild-* linux-source-*
+Pin: release o=Debian,n=experimental
+Pin-Priority: 999
+
+Explanation: src:live-boot (#15477)
+Package: live-boot live-boot-doc live-boot-initramfs-tools
+Pin: origin deb.tails.boum.org
+Pin-Priority: 999
+
+Package: obfs4proxy
+Pin: release o=TorProject,n=obfs4proxy
+Pin-Priority: 990
+
+Explanation: install 0.47 for now (#17005)
+Package: po4a
+Pin: origin deb.tails.boum.org
+Pin-Priority: 999
+
+Package: python3-dogtail
+Pin: release o=Debian,n=bullseye
+Pin-Priority: 999
+
+Package: squashfs-tools
+Pin: release o=Debian,n=sid
+Pin-Priority: 999
+
+Package: tails-installer
+Pin: origin deb.tails.boum.org
+Pin-Priority: 999
+
+Package: virtualbox*
+Pin: release o=Debian,n=sid
+Pin-Priority: 999
+
+Package: webext-ublock-origin
+Pin: release o=Debian,n=sid
+Pin-Priority: 999
+
+Explanation: weirdness in chroot_apt install-binary
+Package: *
+Pin: release o=chroot_local-packages
+Pin-Priority: 1010
+
+Package: *
+Pin: origin deb.tails.boum.org
+Pin-Priority: 990
+
+Package: *
+Pin: release o=Debian,n=buster
+Pin-Priority: 990
+
+Package: *
+Pin: release o=Debian,n=buster-updates
+Pin-Priority: 990
+
+Package: *
+Pin: release l=Debian-Security,n=buster/updates
+Pin-Priority: 990
+
+Package: *
+Pin: release o=TorProject,n=buster
+Pin-Priority: 990
+
+Package: *
+Pin: release o=Debian
+Pin-Priority: -10
+
+Package: *
+Pin: release o=TorProject
+Pin-Priority: -10

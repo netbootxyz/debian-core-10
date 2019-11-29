@@ -1,4 +1,4 @@
-FROM debian:sid
+FROM debian:buster
 
 # versioning
 ARG EXTERNAL_VERSION
@@ -14,18 +14,26 @@ RUN \
  echo "**** install cacerts ****" && \
  apt-get update && \
  apt-get install -y \
-	ca-certificates && \
- echo "**** add tails snapshot repo ****" && \
+	ca-certificates \
+	curl \
+	gnupg && \
+ echo "**** add tails/snapshot repo ****" && \
  echo "deb https://snapshot.debian.org/archive/debian/20191021T030120Z experimental main" >> /etc/apt/sources.list.d/tails.list && \
+ echo "deb http://deb.debian.org/debian sid main contrib" >> /etc/apt/sources.list.d/sid.list && \
+ echo "deb https://deb.tails.boum.org 4.0 main contrib" >> /etc/apt/sources.list.d/tails.list && \
+ apt-key add tails.gpg && \
  echo "**** install deps ****" && \
  apt-get update -o Acquire::Check-Valid-Until=false && \
  apt-get install -o Acquire::Check-Valid-Until=false -y \
+	apparmor \
+	aufs-dkms \
 	curl \
 	initramfs-tools \
 	live-boot \
 	p7zip-full \
 	patch \
 	pixz \
+	plymouth \
 	psmisc \
 	wget \
 	xz-utils && \
