@@ -1,8 +1,8 @@
 endpoints:
-  kali-rolling-live-kernel:
+  tails-4.0-live-kernel:
     path: /debian-core-10/releases/download/REPLACE_RELEASE_NAME/
     files:
     - initrd
     - vmlinuz
-    os: "kali"
-    version: "rolling"
+    os: "tails"
+    version: "4.0"

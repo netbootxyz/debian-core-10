@@ -11,16 +11,15 @@ ENV XDG_CONFIG_HOME="/config/xdg"
 COPY /root /
 
 RUN \
- echo "**** install gnupg ****" && \
+ echo "**** install cacerts ****" && \
  apt-get update && \
  apt-get install -y \
-	gnupg && \
- echo "**** add kali repo ****" && \
- echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" >> /etc/apt/sources.list.d/kali.list && \
- apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys 7D8D0BF6 && \
+	ca-certificates && \
+ echo "**** add tails snapshot repo ****" && \
+ echo "deb https://snapshot.debian.org/archive/debian/20191021T030120Z experimental main" >> /etc/apt/sources.list.d/tails.list && \
  echo "**** install deps ****" && \
- apt-get update && \
- apt-get install -y \
+ apt-get update -o Acquire::Check-Valid-Until=false && \
+ apt-get install -o Acquire::Check-Valid-Until=false -y \
 	curl \
 	initramfs-tools \
 	live-boot \
@@ -28,15 +27,13 @@ RUN \
 	patch \
 	pixz \
 	psmisc \
-	wget && \
+	wget \
+	xz-utils && \
  echo "**** patch live-boot ****" && \
  patch /lib/live/boot/9990-mount-http.sh < /patch && \
  echo "**** install kernel ****" && \
- if [ -z ${EXTERNAL_VERSION+x} ]; then \
-	EXTERNAL_VERSION=$(curl -sLX GET http://http.kali.org/kali/dists/kali-rolling/main/binary-amd64/Packages.gz | gunzip -c |grep -A 7 -m 1 "Package: linux-image-5.3.0-kali2-amd64" | awk -F ": " '/Version/{print $2;exit}');\
- fi && \
- apt-get install -y \
-	linux-image-5.3.0-kali2-amd64=${EXTERNAL_VERSION} && \
+ apt-get install -y -o Acquire::Check-Valid-Until=false \
+	linux-image-5.3.0-trunk-amd64 && \
  echo "**** clean up ****" && \
  mkdir /buildout && \
  rm -rf \
