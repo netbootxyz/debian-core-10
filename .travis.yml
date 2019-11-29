@@ -7,18 +7,18 @@ services:
 
 env:
   global:
-    - BRANCH="sid"
+    - BRANCH="kali"
     - GITHUB_ENDPOINT="netbootxyz/debian-core-10"
     - DEBIAN_FRONTEND="noninteractive"
     - BUILD_TYPE="custom_kernel"
 
 branches:
   only:
-    - 'sid'
+    - 'kali'
 if: type != pull_request AND tag IS blank
 script:
   - |
-    export EXTERNAL_VERSION=$(curl -sX GET https://cloudfront.debian.net/debian/dists/sid/main/binary-amd64/Packages.gz | gunzip -c |grep -A 7 -m 1 "Package: linux-image-5.3.0-2-amd64" | awk -F ": " '/Version/{print $2;exit}')
+    export EXTERNAL_VERSION=$(curl -sLX GET http://http.kali.org/kali/dists/kali-rolling/main/binary-amd64/Packages.gz | gunzip -c |grep -A 7 -m 1 "Package: linux-image-5.3.0-kali2-amd64" | awk -F ": " '/Version/{print $2;exit}')
   - wget https://raw.githubusercontent.com/netbootxyz/build-pipelines/master/build.sh && chmod +x build.sh
   - git config --local user.name $GIT_USERNAME
   - git config --local user.email $GIT_EMAIL

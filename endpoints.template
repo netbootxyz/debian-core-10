@@ -1,8 +1,8 @@
 endpoints:
-  debian-sid-live-kernel:
+  debian-kali-live-kernel:
     path: /debian-core-10/releases/download/REPLACE_RELEASE_NAME/
     files:
     - initrd
     - vmlinuz
     os: "debian"
-    version: "sid"
+    version: "kali"
