@@ -1,8 +1,8 @@
 endpoints:
-  debian-kali-live-kernel:
+  kali-2019.4-live-kernel:
     path: /debian-core-10/releases/download/REPLACE_RELEASE_NAME/
     files:
     - initrd
     - vmlinuz
-    os: "debian"
-    version: "kali"
+    os: "kali"
+    version: "2019.4"
